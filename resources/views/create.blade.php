@@ -1,0 +1,6 @@
+
+
+@extends('layouts.layout')
+<!-- шаблон -->
+
+
