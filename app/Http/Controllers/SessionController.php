@@ -17,7 +17,7 @@ class SessionController extends Controller {
 
    public function storeSessionData(Request $request) {
       $request->session()->put('my_name','Virat Gandhi');
-      echo "Data has been added to session 1";
+      echo "Data has been added to session";
       dump(session()->all());
    }
 
