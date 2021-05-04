@@ -11,6 +11,7 @@ use App\Models\Tag;
 use Illuminate\Support\Facades\Cookie;
 use SebastianBergmann\Template\Template;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Cache;
 
 class HomeController extends Controller{
     public function index(){
@@ -160,14 +161,27 @@ class HomeController extends Controller{
     // вариант 4
     public function setCookie4(Request $request){
         $cookie = Cookie::make('name', 'value', 120);
+        dump(Cookie::make('name', 'value', 120));
     }
 
     public function getCookie4(Request $request){
-        $val = Cookie::get('cookieName');
+        $val = Cookie::get('name');
         echo $val;
         dump($val);
-        dump($val = Cookie::get('cookieName'));
+        dump($val = Cookie::get('name'));
     }//https://www.nicesnippets.com/blog/laravel-cookies-set-get-delete-cookies
+
+
+    //Кеш
+    public function putCache(Request $request){
+        Cache::put('key', 'value', 60); // имя, значение, время в секундах
+        //dump();
+    }
+
+    public function getCache(Request $request){
+        dump(Cache::get('key'));
+    }
+
 }
 ?>
 

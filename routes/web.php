@@ -44,7 +44,8 @@ Route::get('/getCookie3', 'App\Http\Controllers\HomeController@getCookie3'); // 
 Route::get('/setCookie4', 'App\Http\Controllers\HomeController@setCookie4'); // вариант 4
 Route::get('/getCookie4', 'App\Http\Controllers\HomeController@getCookie4');
 
-
+Route::get('/putCache', 'App\Http\Controllers\HomeController@putCache'); // Кеш хранится в storage/framework/cache/data
+Route::get('/getCache', 'App\Http\Controllers\HomeController@getCache');
 /*
 |--------------------------------------------------------------------------
 | Web Routes
