@@ -32,6 +32,18 @@ Route::get('/accessSessionData', 'App\Http\Controllers\SessionController@accessS
 Route::get('/storeSessionData', 'App\Http\Controllers\SessionController@storeSessionData');
 Route::get('/deleteSessionData', 'App\Http\Controllers\SessionController@deleteSessionData');
 
+Route::get('/set_cookie', 'App\Http\Controllers\HomeController@set_cookie'); // через request
+Route::get('/show_cookie', 'App\Http\Controllers\HomeController@show_cookie');
+
+Route::get('/set2_cookie', 'App\Http\Controllers\HomeController@set2_cookie'); // через response
+Route::get('/show2_cookie', 'App\Http\Controllers\HomeController@show2_cookie');
+
+Route::get('/setCookie3', 'App\Http\Controllers\HomeController@setCookie3');
+Route::get('/getCookie3', 'App\Http\Controllers\HomeController@getCookie3'); //еще вариант
+
+Route::get('/set4_cookie', 'App\Http\Controllers\HomeController@set4_cookie');
+Route::get('/show4_cookie', 'App\Http\Controllers\HomeController@show4_cookie');
+
 
 /*
 |--------------------------------------------------------------------------

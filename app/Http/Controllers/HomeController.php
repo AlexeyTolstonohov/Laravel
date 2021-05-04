@@ -8,7 +8,9 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Posts;
 use App\Models\Rubric;
 use App\Models\Tag;
+use Illuminate\Support\Facades\Cookie;
 use SebastianBergmann\Template\Template;
+use Illuminate\Http\Response;
 
 class HomeController extends Controller{
     public function index(){
@@ -105,6 +107,59 @@ class HomeController extends Controller{
         dump($request->session()->pull('test'));
         dump(session()->all());
     }// чтение и удаление данных из сессии
+
+
+    // вариант 1 через реквест  по видеокурсу
+    public function set_cookie(Request $request){
+        dump(Cookie::queue('test', 'Test cookie', 60));
+    } // создание cookie
+
+    public function show_cookie(Request $request){
+        dump(Cookie::get('test'));
+        dump($request->cookie('test'));
+    } // чтение cookie
+
+
+
+    // вариант 2 через респонс
+    public function set2_cookie(Response $response){
+    $response = new Response('Hello World');
+    $response->withCookie(cookie('test', 'Test cookie', 1));
+    $response->withCookie(cookie()->forever('name', 'value'));
+    dump($response);
+    //dump($response->withCookie(cookie()->forever('test', 'myCookie')));
+    }
+
+    public function show2_cookie(Request $request){
+    dump($request->cookie('test'));
+    dump($request->cookie('name'));
+    }
+
+    // вариант 3 через респонс
+    public function setCookie3(Request $request) {
+        $minutes = 10;
+        $response = new Response('Hello World');
+        $response->withCookie(cookie('name', 'virat', $minutes));
+        return $response;
+    }
+
+    public function getCookie3(Request $request){
+        $value = $request->cookie('name');
+        dump($value = $request->cookie('name'));
+        echo $value;
+    }  // https://tony-stark.medium.com/laravel-8-cookie-usage-tutorial-with-the-code-example-2020-ee3b71f70ba7
+
+
+    public function set4_cookie(Request $request){
+        $cookie = Cookie::make('name', 'value', 120);
+    }
+
+    public function show4_cookie(Request $request){
+        $val = Cookie::get('cookieName');
+        echo $val;
+        dump($val);
+        dump($val = Cookie::get('cookieName'));
+    }//https://www.nicesnippets.com/blog/laravel-cookies-set-get-delete-cookies
 
 }
 ?>

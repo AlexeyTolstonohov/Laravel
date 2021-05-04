@@ -25,10 +25,10 @@ class SessionController extends Controller {
       $request->session()->forget('my_name');
       echo "Data has been removed from session.";
    }
-}
 
 
-    /*public function show(Request $request){
+
+    public function show(Request $request){
 
         dump(session()->all());
     }
@@ -42,9 +42,9 @@ class SessionController extends Controller {
     public function get(Request $request){
 
         $request->session()->get('test');
-        dump(session()->all());
+       // dump(session()->all());
+       dump($request->session()->get('test'));
     }
 
-}*/
-
+}
 
