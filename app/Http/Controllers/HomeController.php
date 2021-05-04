@@ -110,19 +110,21 @@ class HomeController extends Controller{
 
 
     // вариант 1 через реквест  по видеокурсу
-    public function set_cookie(Request $request){
+    public function setCookie(Request $request){
         dump(Cookie::queue('test', 'Test cookie', 60));
     } // создание cookie
 
-    public function show_cookie(Request $request){
+    public function getCookie(Request $request){
         dump(Cookie::get('test'));
         dump($request->cookie('test'));
     } // чтение cookie
 
 
 
+
+
     // вариант 2 через респонс
-    public function set2_cookie(Response $response){
+    public function setCookie2(Response $response){
     $response = new Response('Hello World');
     $response->withCookie(cookie('test', 'Test cookie', 1));
     $response->withCookie(cookie()->forever('name', 'value'));
@@ -130,10 +132,13 @@ class HomeController extends Controller{
     //dump($response->withCookie(cookie()->forever('test', 'myCookie')));
     }
 
-    public function show2_cookie(Request $request){
+    public function getCookie2(Request $request){
     dump($request->cookie('test'));
     dump($request->cookie('name'));
     }
+
+
+
 
     // вариант 3 через респонс
     public function setCookie3(Request $request) {
@@ -150,17 +155,19 @@ class HomeController extends Controller{
     }  // https://tony-stark.medium.com/laravel-8-cookie-usage-tutorial-with-the-code-example-2020-ee3b71f70ba7
 
 
-    public function set4_cookie(Request $request){
+
+
+    // вариант 4
+    public function setCookie4(Request $request){
         $cookie = Cookie::make('name', 'value', 120);
     }
 
-    public function show4_cookie(Request $request){
+    public function getCookie4(Request $request){
         $val = Cookie::get('cookieName');
         echo $val;
         dump($val);
         dump($val = Cookie::get('cookieName'));
     }//https://www.nicesnippets.com/blog/laravel-cookies-set-get-delete-cookies
-
 }
 ?>
 
