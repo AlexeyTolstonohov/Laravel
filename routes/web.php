@@ -50,6 +50,8 @@ Route::get('/getCache', 'App\Http\Controllers\HomeController@getCache'); // фа
 Route::get('/putCacheForever', 'App\Http\Controllers\HomeController@putCacheForever'); //создаст файл кеша навсегда
 Route::get('/checkCache', 'App\Http\Controllers\HomeController@checkCache'); // если кеш есть то выведет "кеш на 60 сек", иначе
 //создаст новый файл кеша и выведет значение "Кеш был пуст"
+Route::get('/forgetCache', 'App\Http\Controllers\HomeController@forgetCache'); //удаляет файл кеша , со значением "value2",
+//этот файл мы создавали навсегда  путем  "putCacheForever"
 
 
 /*

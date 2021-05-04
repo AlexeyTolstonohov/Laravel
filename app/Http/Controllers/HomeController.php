@@ -199,6 +199,12 @@ class HomeController extends Controller{
             dump(Cache::get('key'));
         }
     }
+
+    public function forgetCache(Request $request){
+        Cache::forget('key2');
+        dump(Cache::get('key2'));
+    }
+
 }
 ?>
 
