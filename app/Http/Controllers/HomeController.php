@@ -174,14 +174,31 @@ class HomeController extends Controller{
 
     //Кеш
     public function putCache(Request $request){
-        Cache::put('key', 'value', 60); // имя, значение, время в секундах
+        Cache::put('key', 'Кеш на 60 сек', 60); // имя, значение, время в секундах
         //dump();
     }
 
     public function getCache(Request $request){
         dump(Cache::get('key'));
+        dump(Cache::get('key2'));
+        dump(Cache::get('key3'));
     }
 
+    public function putCacheForever(Request $request){
+        Cache::put('key2', 'value2'); // имя, значение,  время если не указать - будет навсегда
+        $value = 'value3';
+        Cache::forever('key3', $value); //метод forever также навсегда создает файл в кеше
+        //две формы записи, работают одинаково
+    }
+
+    public function checkCache(Request $request){
+        if(Cache::has('key')){
+            dump(Cache::get('key'));
+        }else{
+            dump(Cache::put('key', 'Кеш был пуст', 60));
+            dump(Cache::get('key'));
+        }
+    }
 }
 ?>
 

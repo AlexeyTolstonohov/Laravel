@@ -15,6 +15,7 @@ Route::get('/get_posts_by_rubric', 'App\Http\Controllers\HomeController@get_post
 Route::get('/find_tags', 'App\Http\Controllers\HomeController@find_tags');
 Route::get('/find_posts_by_tag', 'App\Http\Controllers\HomeController@find_posts_by_tag');
 Route::get('/index', 'App\Http\Controllers\TemplateController@index');
+Route::get('/post_loop_show', 'App\Http\Controllers\TemplateController@post_loop_show');
 
 Route::get('/create_post', 'App\Http\Controllers\PostController@create_post')->name('posts.create');
 Route::post('/store', 'App\Http\Controllers\PostController@store')->name('posts.store');
@@ -45,7 +46,12 @@ Route::get('/setCookie4', 'App\Http\Controllers\HomeController@setCookie4'); // 
 Route::get('/getCookie4', 'App\Http\Controllers\HomeController@getCookie4');
 
 Route::get('/putCache', 'App\Http\Controllers\HomeController@putCache'); // Кеш хранится в storage/framework/cache/data
-Route::get('/getCache', 'App\Http\Controllers\HomeController@getCache');
+Route::get('/getCache', 'App\Http\Controllers\HomeController@getCache'); // файл кеша удалится через 60 сек
+Route::get('/putCacheForever', 'App\Http\Controllers\HomeController@putCacheForever'); //создаст файл кеша навсегда
+Route::get('/checkCache', 'App\Http\Controllers\HomeController@checkCache'); // если кеш есть то выведет "кеш на 60 сек", иначе
+//создаст новый файл кеша и выведет значение "Кеш был пуст"
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
