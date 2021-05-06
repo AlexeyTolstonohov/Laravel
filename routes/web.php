@@ -53,6 +53,9 @@ Route::get('/checkCache', 'App\Http\Controllers\HomeController@checkCache'); // 
 Route::get('/forgetCache', 'App\Http\Controllers\HomeController@forgetCache'); //удаляет файл кеша , со значением "value2",
 //этот файл мы создавали навсегда  путем  "putCacheForever"
 
+Route::get('/sendMail', 'App\Http\Controllers\HomeController@sendMail');
+
+
 
 /*
 |--------------------------------------------------------------------------
