@@ -1,16 +1,23 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Mail\OrderShipped;
 use App\Mail\TestMail;
 use Illuminate\Http\Request;
-use Mail;
+use Illuminate\Support\Facades\Mail;
 use App\User;
 
 
-class HomeController extends Controller{
-    public function sendMail(){
-        Mail::to('some@gmail.com')->send(new TestMail());  //нет такого и настройки надо выставить в .env  и почту написать реальную
-        return view('send');
+class MailController extends Controller{
+    public function sendMail(Request $request){
+        /*Mail::to('some@gmail.com')->send(new OrderShipped($order));  //нет такого и настройки надо выставить в .env  и почту написать реальную  */
+        $details =[
+            'title' => 'Mail from Laravel 8',
+            'body' => 'text from Laravel'
+        ];
+
+        Mail::to('beckon.frensis@yandex.ru')->send(new TestMail($details));
+        return 'Email sended';
     }
 }
 
