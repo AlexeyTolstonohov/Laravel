@@ -10,15 +10,16 @@ use Illuminate\Queue\SerializesModels;
 class TestMail extends Mailable
 {
     use Queueable, SerializesModels;
-
+    public $details;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($details)
     {
-        //
+        $this->details = $details;
+        //return $this->view('create');
     }
 
     /**
@@ -28,7 +29,6 @@ class TestMail extends Mailable
      */
     public function build()
     {
-        $test = ['mail send'];
-        return $this->view('create');
+        return $this->subject('Test mail from Laravel')->view('create');
     }
 }

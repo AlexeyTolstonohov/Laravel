@@ -16,8 +16,12 @@ class MailController extends Controller{
             'body' => 'text from Laravel'
         ];
 
-        Mail::to('beckon.frensis@yandex.ru')->send(new TestMail($details));
-        return 'Email sended';
+        if(Mail::to('beckon.frensis@yandex.ru')->send(new TestMail($details))){
+            dump('sended');
+        }else{
+            dump(' not sended');
+        }
+
     }
 }
 

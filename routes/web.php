@@ -2,6 +2,7 @@
 
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MailController;
 
 Route::get('/','App\Http\Controllers\PostController@index');
 Route::get('/test','App\Http\Controllers\PostController@test');
@@ -53,7 +54,7 @@ Route::get('/checkCache', 'App\Http\Controllers\HomeController@checkCache'); // 
 Route::get('/forgetCache', 'App\Http\Controllers\HomeController@forgetCache'); //удаляет файл кеша , со значением "value2",
 //этот файл мы создавали навсегда  путем  "putCacheForever"
 
-Route::get('/sendMail', 'App\Http\Controllers\MailController@sendMail');
+Route::get('/sendMail', 'App\Http\Controllers\MailController@sendMail'); //https://www.youtube.com/watch?v=kWEvrHVg8kI
 
 
 
