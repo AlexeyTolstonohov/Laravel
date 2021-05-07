@@ -16,28 +16,28 @@
         <div class="row">
             <div class="col-md-6">
                 <h3> Форма регистрации </h3>
-                <form action="{{route('contact')}}" method="post">
+                <form action="" method="post">
                     @csrf
-                    <div class="form-group">
+                    <div class="form-group mt-3">
                         <label for="name">Your name</label>
                         <input type ="text" class="form-control" id="name"
                         value="{{ old('name') }}">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mt-3">
                         <label for="email">Your email</label>
                         <input type ="email" class="form-control" id="email"
                         value="{{ old('email') }}">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mt-3">
                         <label for="password">Your password</label>
                         <input type ="password" class="form-control" id="password" name="password">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mt-3">
                         <label for="password_confirmation"> Confirm password</label>
                         <input type ="password" class="form-control" id="password_confirmation" name="password_confirmation">
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Send</button>
+                    <button type="submit" class="btn btn-primary mt-3">Send</button>
                 </form>
             </div>
         </div>
