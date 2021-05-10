@@ -12,8 +12,8 @@ class MailController extends Controller{
     public function sendMail(Request $request){
         /*Mail::to('some@gmail.com')->send(new OrderShipped($order));  //нет такого и настройки надо выставить в .env  и почту написать реальную  */
         $details =[
-            'title' => 'Mail from Laravel 8',
-            'body' => 'text from Laravel'
+            'title' => 'title mail',
+            'body' => 'text mail'
         ];
 
         Mail::to('beckon.frensis@yandex.ru')->send(new TestMail($details));
