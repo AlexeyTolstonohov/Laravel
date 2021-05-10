@@ -19,7 +19,7 @@ class TestMail extends Mailable
     public function __construct($details)
     {
         $this->details = $details;
-        //return $this->view('create');
+        return $this->view('create');
     }
 
     /**
@@ -29,6 +29,6 @@ class TestMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Test mail from Laravel')->view('create');
+        return $this->subject('Test mail from Laravel 10.05.2021')->view('create');
     }
 }
