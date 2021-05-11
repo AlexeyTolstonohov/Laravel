@@ -31,6 +31,6 @@ class UserController extends Controller
         ]);
             session()->flash('success', 'succsessful registration');
         Auth::login($user);
-        return redirect()->home();
+        return view('layouts.form');
     }
 }

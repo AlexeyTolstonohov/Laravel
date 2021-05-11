@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-md-6">
                 <h3> Форма регистрации </h3>
-                <form action="" method="post">
+                <form action="{{route('register.storeUser')}}" method="get">
                     @csrf
                     <div class="form-group mt-3">
                         <label for="name">Your name</label>

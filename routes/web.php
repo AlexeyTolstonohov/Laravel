@@ -57,7 +57,7 @@ Route::get('/forgetCache', 'App\Http\Controllers\HomeController@forgetCache'); /
 Route::get('/sendMail', 'App\Http\Controllers\MailController@sendMail'); //https://www.youtube.com/watch?v=kWEvrHVg8kI
 
 Route::get('/createUser', 'App\Http\Controllers\UserController@createUser')->name('register.createUser'); // в бразузере http://laravel.loc/createUser
-Route::post('/storeUser', 'App\Http\Controllers\UserController@storeUser')->name('register.storeUser');
+Route::get('/storeUser', 'App\Http\Controllers\UserController@storeUser')->name('register.storeUser');
 
 /*
 |--------------------------------------------------------------------------
