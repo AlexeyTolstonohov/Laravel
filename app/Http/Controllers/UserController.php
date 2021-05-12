@@ -30,9 +30,9 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password)
         ]);
-        session()->flash('success', 'succsessful registration');
+        $request->session()->flash('success', 'succsessful registration');
         Auth::login($user);
-        return view('layouts.form');
 
+        return view('user.createUser');
     }
 }
