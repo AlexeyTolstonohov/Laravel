@@ -17,9 +17,10 @@ class UserController extends Controller
     }
 
     public function storeUser(Request $request){
+        //dd($request->all());
 
         $request->validate([
-            'name' => 'requared',
+            'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|confirmed',
         ]);
@@ -29,8 +30,9 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password)
         ]);
-            session()->flash('success', 'succsessful registration');
+        session()->flash('success', 'succsessful registration');
         Auth::login($user);
         return view('layouts.form');
+
     }
 }

@@ -11,22 +11,19 @@
     <title>user create</title>
   </head>
   <body>
-    <h1>Registration</h1>
     <div class="container mt-4">
         <div class="row">
             <div class="col-md-6">
                 <h3> Форма регистрации </h3>
-                <form action="{{route('register.storeUser')}}" method="get">
+                <form method="post" action="{{ route('register.storeUser') }}">
                     @csrf
                     <div class="form-group mt-3">
                         <label for="name">Your name</label>
-                        <input type ="text" class="form-control" id="name"
-                        value="{{ old('name') }}">
+                        <input type ="text" class="form-control" id="name" name="name" value="{{ old('name') }}">
                     </div>
                     <div class="form-group mt-3">
                         <label for="email">Your email</label>
-                        <input type ="email" class="form-control" id="email"
-                        value="{{ old('email') }}">
+                        <input type ="email" class="form-control" id="email" name="email" value="{{ old('email') }}">
                     </div>
                     <div class="form-group mt-3">
                         <label for="password">Your password</label>
