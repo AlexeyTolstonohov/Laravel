@@ -19,8 +19,21 @@
                 <a class="mt-5" href="{{ route('loginForm') }}">Логин Форм</a>
                 <a class="mt-5" href="{{ route('logout') }}">Логаут</a>
 
-                <form method="post" action="{{ route('register.storeUser') }}">
+
+                <?php
+                     dump(Auth::check());
+                ?>
+                   @if (Auth::check())
+                    <a class="mt-5" href="#"> {{ dump(Auth::user()->name) }} </a>
+                    <a class="mt-5" href="{{ route('logout') }}">Логаут</a>
+
+                   @else
+                     <a class="mt-5" href="{{ route('login') }}">незареган</a>
+                   @endif
+
+
                     @csrf
+                <form method="get" action="{{ route('login') }}">
                     <div class="form-group mt-3">
                         <label for="email">Your email</label>
                         <input type ="email" class="form-control" id="email" name="email" value="{{ old('email') }}">

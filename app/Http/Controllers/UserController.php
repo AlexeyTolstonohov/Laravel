@@ -43,14 +43,14 @@ class UserController extends Controller
     public function login(Request $request){
         //dd($request->all());
         $request->validate([
-            'email' => 'required|email|unique:users',
-            'password' => 'required|confirmed',
+            'email' => 'required|email',
+            'password' => 'required',
         ]);
         if (Auth::attempt([
             'email' => $request->email,
-            'password' => $request->password
+            'password' => $request->password,
             ])){
-                redirect()->home();
+                return redirect()->route('login');
             }
         return redirect()->back()->with('error', 'incorrect login or password');
     }
