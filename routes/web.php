@@ -58,7 +58,14 @@ Route::get('/sendMail', 'App\Http\Controllers\MailController@sendMail'); //https
 
 Route::get('/createUser', 'App\Http\Controllers\UserController@createUser')->name('register.createUser'); // в бразузере http://laravel.loc/createUser
 Route::post('/storeUser', 'App\Http\Controllers\UserController@storeUser')->name('register.storeUser');
-//Route::get('/storeUser', [UserController::class, 'storeUser']);
+
+Route::get('/loginForm', 'App\Http\Controllers\UserController@loginForm')->name('loginForm');
+Route::get('/login', 'App\Http\Controllers\UserController@login')->name('login');
+Route::get('/logout', 'App\Http\Controllers\UserController@logout')->name('logout');
+
+
+
+
 
 /*
 |--------------------------------------------------------------------------

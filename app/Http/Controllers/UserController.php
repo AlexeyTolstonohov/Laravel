@@ -35,4 +35,28 @@ class UserController extends Controller
 
         return view('user.createUser');
     }
+
+    public function loginForm(){
+        return view('user.login');
+    }
+
+    public function login(Request $request){
+        //dd($request->all());
+        $request->validate([
+            'email' => 'required|email|unique:users',
+            'password' => 'required|confirmed',
+        ]);
+        if (Auth::attempt([
+            'email' => $request->email,
+            'password' => $request->password
+            ])){
+                redirect()->home();
+            }
+        return redirect()->back()->with('error', 'incorrect login or password');
+    }
+
+    public function logout(Request $request){
+        Auth::logout();
+        return redirect()->route('register.createUser');
+    }
 }
