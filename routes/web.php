@@ -6,7 +6,7 @@ use App\Http\Controllers\MailController;
 
 Route::get('/','App\Http\Controllers\PostController@index');
 Route::get('/test','App\Http\Controllers\PostController@test');
-Route::get('/admin','App\Http\Controllers\Adm\AdmController@index');
+Route::get('/admin2','App\Http\Controllers\Adm\AdmController@index');
 Route::get('/test2', 'App\Http\Controllers\HomeController@index');
 Route::get('/db_show', 'App\Http\Controllers\HomeController@db_show_post');
 Route::get('/newPost', 'App\Http\Controllers\HomeController@addPost');
@@ -62,6 +62,8 @@ Route::post('/storeUser', 'App\Http\Controllers\UserController@storeUser')->name
 Route::get('/loginForm', 'App\Http\Controllers\UserController@loginForm')->name('loginForm');
 Route::get('/login', 'App\Http\Controllers\UserController@login')->name('login');
 Route::get('/logout', 'App\Http\Controllers\UserController@logout')->name('logout');
+
+Route::get('/admin', '\App\Http\Controllers\Adm\AdmController@index')->middleware('admin');
 
 
 
