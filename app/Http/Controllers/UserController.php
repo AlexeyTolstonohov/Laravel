@@ -23,12 +23,16 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|confirmed',
+            'avatar' => 'nullable|image',
         ]);
+
+        $avatar = $request->file('avatar')->store('images');
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password)
+            'password' => Hash::make($request->password),
+            'avatar' => $avatar,
         ]);
         $request->session()->flash('success', 'succsessful registration');
         Auth::login($user);
