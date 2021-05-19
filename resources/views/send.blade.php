@@ -17,3 +17,6 @@
     <textarea type ="text" class="form-control" id="message"
     rows="5" name="message">
 </div>
+
+@section('layouts.footer')
+@endsection

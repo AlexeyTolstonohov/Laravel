@@ -10,7 +10,7 @@ class Rubric extends Model
     use HasFactory;
     protected $table = 'rubrics';
     //$rubric = Rubric:find(1);
-
+    //protected $title ='title';
 
     public function posts(){
 

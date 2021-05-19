@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Models\Rubric;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,10 +20,12 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      *
-     * @return void
+     * @return voidf
      */
     public function boot()
     {
-        //
+        view()->composer('layouts.footer', function($view){
+            $view->with('rubrics', Rubric::all());
+        });
     }
 }
