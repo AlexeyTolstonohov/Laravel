@@ -65,7 +65,7 @@ Route::get('/logout', 'App\Http\Controllers\UserController@logout')->name('logou
 
 Route::get('/admin', '\App\Http\Controllers\Adm\AdmController@index')->middleware('admin');
 
-
+Route::get('/pagination', 'App\Http\Controllers\HomeController@pagination');
 
 
 

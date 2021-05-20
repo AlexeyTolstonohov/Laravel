@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Models\Rubric;
+use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,5 +28,7 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('layouts.footer', function($view){
             $view->with('rubrics', Rubric::all());
         });
+
+        Paginator::useBootstrap();
     }
 }

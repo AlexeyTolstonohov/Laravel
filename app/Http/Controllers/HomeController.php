@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Cookie;
 use SebastianBergmann\Template\Template;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 
 class HomeController extends Controller{
     public function index(){
@@ -204,6 +206,15 @@ class HomeController extends Controller{
         Cache::forget('key2');
         dump(Cache::get('key2'));
     }
+
+
+    public function pagination(Request $request){
+        $posts = Posts::orderBy('id', 'desc')->paginate(4);
+        $title = 'Home Page';
+        return view('layouts.layout', compact('title', 'posts'));
+    }
+
+
 
 }
 ?>

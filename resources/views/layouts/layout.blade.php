@@ -28,7 +28,7 @@
 
     <style>
       .bd-placeholder-img {
-        font-size: 1.125rem;
+        font-size: 18px;
         text-anchor: middle;
         -webkit-user-select: none;
         -moz-user-select: none;
@@ -37,7 +37,7 @@
 
       @media (min-width: 768px) {
         .bd-placeholder-img-lg {
-          font-size: 3.5rem;
+          font-size: 16px;
         }
       }
     </style>
@@ -88,7 +88,7 @@
 <main>
    <!-- @ yield('content');  --> <!-- подключаем контент из template.blade.php -->
 
-   @include('layouts.form');
+    @include('template')
 </main>
 
 <!--
