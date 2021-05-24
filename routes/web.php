@@ -9,7 +9,7 @@ Route::get('/test','App\Http\Controllers\PostController@test');
 Route::get('/admin2','App\Http\Controllers\Adm\AdmController@index');
 Route::get('/test2', 'App\Http\Controllers\HomeController@index');
 Route::get('/db_show', 'App\Http\Controllers\HomeController@db_show_post');
-Route::get('/newPost', 'App\Http\Controllers\HomeController@addPost');
+Route::get('/addPost', 'App\Http\Controllers\HomeController@addPost');
 Route::get('/getPost', 'App\Http\Controllers\HomeController@getPost');
 Route::get('/get_number_post_and_title_Rubric', 'App\Http\Controllers\HomeController@get_number_post_and_title_Rubric');
 Route::get('/get_posts_by_rubric', 'App\Http\Controllers\HomeController@get_posts_by_rubric');

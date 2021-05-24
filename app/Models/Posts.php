@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Rubric;
+use Illuminate\Support\Str;
 use App\Models\Tag;
 class Posts extends Model
 {
@@ -36,4 +37,7 @@ class Posts extends Model
         return $this->belongsToMany(Tag::class);
     }
 
+    public function SetTitleAttribute($value){
+        $this->attributes['title'] = Str::title($value);
+    }
 }
