@@ -89,6 +89,7 @@
    <!-- @ yield('content');  --> <!-- подключаем контент из template.blade.php -->
 
     @include('template')
+
 </main>
 
 <!--
