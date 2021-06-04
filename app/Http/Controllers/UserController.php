@@ -34,7 +34,7 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
             'avatar' => $avatar,
         ]);
-        $request->session()->flash('success', 'succsessful registration');
+        $request->session()->flash('success', 'successful registration');
         Auth::login($user);
 
         return view('user.createUser');
