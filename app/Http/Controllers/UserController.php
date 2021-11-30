@@ -17,19 +17,19 @@ class UserController extends Controller
     public function storeUser(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
+            'name'     => 'required',
+            'email'    => 'required|email|unique:users',
             'password' => 'required|confirmed',
-            'avatar' => 'nullable|image',
+            'avatar'   => 'nullable|image',
         ]);
 
         $avatar = $request->file('avatar')->store('images');
 
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
+            'name'     => $request->name,
+            'email'    => $request->email,
             'password' => Hash::make($request->password),
-            'avatar' => $avatar,
+            'avatar'   => $avatar,
         ]);
 
         $request->session()->flash('success', 'successful registration');
@@ -45,15 +45,9 @@ class UserController extends Controller
 
     public function login(Request $request)
     {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
+        $request->validate(['email' => 'required|email', 'password' => 'required']);
 
-        if (Auth::attempt([
-            'email' => $request->email,
-            'password' => $request->password,
-            ]))
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password]))
         {
             return redirect()->route('login');
         }
