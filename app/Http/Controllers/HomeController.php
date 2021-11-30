@@ -15,28 +15,33 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 
-class HomeController extends Controller{
-    public function index(){
+class HomeController extends Controller
+{
+    public function index()
+    {
          dump($_ENV['DB_DATABASE']);
          dump(config('app.timezone'));
          dump(config('database.connections.mysql.database'));
          dump($_ENV);
          return "hello";
-    }  //вывод настроек ларавел, название базы данных, часовой пояс, соединение, настройки
+    }   //вывод настроек ларавел, название базы данных, часовой пояс, соединение, настройки
 
-    public function test(){
+    public function test()
+    {
         return __METHOD__;
     }
 
-    public function db_show_post(){
-       // $posts = DB::select("SELECT * FROM users");
+    public function db_show_post()
+    {
+        // $posts = DB::select("SELECT * FROM users");
         $data = DB::table("country")->limit(5)->get();
         dd($data);
         return view('home', ['res'=>5, 'name'=> 'John']);
-    }  //вывод стран - максмимум пять результатов
+    }   //вывод стран - максмимум пять результатов
 
 
-    public function addPost(){
+    public function addPost()
+    {
         $post = new Posts();
         $post->title = 'Статья 1';
         $post->content = 'текст статьи 1';
@@ -44,48 +49,57 @@ class HomeController extends Controller{
         $post->save();
 
         return view('home', ['res'=>5, 'name'=> 'John']);
-    } //добавление поста
+    }   //добавление поста
 
 
-    public function getPost(){
+    public function getPost()
+    {
         $post = Posts::find(1);
         dump($post);
-    } //вывод поста
-    public function get_number_post_and_title_Rubric(){
+    }   //вывод поста
+
+    public function get_number_post_and_title_Rubric()
+    {
         $post = Posts::find(3);
         dump($post->title, $post->rubric->title);
-    } //Вывод поста номер три (его заголовка) и заголовка рубрики которая с ним связана
+    }   //Вывод поста номер три (его заголовка) и заголовка рубрики которая с ним связана
 
-    public function get_posts_by_rubric(){
+    public function get_posts_by_rubric()
+    {
         $rubric = Rubric::find(4);
         dump($rubric->posts);
-    } //вывод постов по рубрике один пост в одной рубрике
+    }   //вывод постов по рубрике один пост в одной рубрике
 
-    public function find_tags(){
+    public function find_tags()
+    {
         $post = Posts::find(1);
         dump($post->title);
-        foreach ($post->tags as $tag){
+
+        foreach ($post->tags as $tag)
+        {
             dump($tag->title);
         }
-    } //вывод тегов связанных с постом
+        unset($tag);
+    }   //вывод тегов связанных с постом
 
-    public function find_posts_by_tag(){
+    public function find_posts_by_tag()
+    {
         $tag = Tag::find(2);
         dump($tag->title);
         foreach ($tag->posts as $post){
             dump($post->title);
         }
-    } //вывод постов по тегу
+        unset($post);
+    }   //вывод постов по тегу
 
-    public function show_session(Request $request){
-
+    public function show_session(Request $request)
+    {
         dump($request->all());
         dump(session()->all());
+    }   //вывод данных сессии
 
-    } //вывод данных сессии
-
-    public function put_in_session(Request $request){
-
+    public function put_in_session(Request $request)
+    {
         $request->session()->put('test', 'Test value');
         //session(['test'=>'Test Value']);  то же самое что и строка выше, вставляем в массив
         //значение 'Test value' , по ключу 'test'
@@ -96,126 +110,121 @@ class HomeController extends Controller{
 
         //добавляем массив карт, указываем айди, и добавляем два значения в поле тайтл
         dump(session()->all());
+    }   //вывод данных сессии
 
-    } //вывод данных сессии
-
-    public function get_from_session(Request $request){
+    public function get_from_session(Request $request)
+    {
         //dump(session()->get('test'));
         $value = $request->session()->get('test');
-        //  dump(session('cart')[1]['title']);
+        //dump(session('cart')[1]['title']);
         dump(session()->all());
-    } // выводим данные по ключам тест, и из массива карт, айди 1, поле тайтл
+    }   //выводим данные по ключам тест, и из массива карт, айди 1, поле тайтл
 
-    public function pull_session(Request $request){
+    public function pull_session(Request $request)
+    {
         dump($request->session()->pull('test'));
         dump(session()->all());
-    }// чтение и удаление данных из сессии
+    }   //чтение и удаление данных из сессии
 
-
-    // вариант 1 через реквест  по видеокурсу
-    public function setCookie(Request $request){
+    public function setCookie(Request $request)
+    {
         dump(Cookie::queue('test', 'Test cookie', 60));
-    } // создание cookie
+    }   //создание cookie вариант 1 через реквест  по видеокурсу
 
-    public function getCookie(Request $request){
+    public function getCookie(Request $request)
+    {
         dump(Cookie::get('test'));
         dump($request->cookie('test'));
-    } // чтение cookie
+    }   //чтение cookie
 
+    public function setCookie2(Response $response)
+    {
+        $response = new Response('Hello World');
+        $response->withCookie(cookie('test', 'Test cookie', 1));
+        $response->withCookie(cookie()->forever('name', 'value'));
+        dump($response);
+        //dump($response->withCookie(cookie()->forever('test', 'myCookie')));
+    }   //вариант 2 через респонс
 
-
-
-
-    // вариант 2 через респонс
-    public function setCookie2(Response $response){
-    $response = new Response('Hello World');
-    $response->withCookie(cookie('test', 'Test cookie', 1));
-    $response->withCookie(cookie()->forever('name', 'value'));
-    dump($response);
-    //dump($response->withCookie(cookie()->forever('test', 'myCookie')));
+    public function getCookie2(Request $request)
+    {
+        dump($request->cookie('test'));
+        dump($request->cookie('name'));
     }
 
-    public function getCookie2(Request $request){
-    dump($request->cookie('test'));
-    dump($request->cookie('name'));
-    }
-
-
-
-
-    // вариант 3 через респонс
-    public function setCookie3(Request $request) {
+    public function setCookie3(Request $request)
+    {
         $minutes = 10;
         $response = new Response('Hello World');
         $response->withCookie(cookie('name', 'virat', $minutes));
         return $response;
-    }
+    }   //вариант 3 через респонс
 
-    public function getCookie3(Request $request){
+    public function getCookie3(Request $request)
+    {
         $value = $request->cookie('name');
         dump($value = $request->cookie('name'));
         echo $value;
-    }  // https://tony-stark.medium.com/laravel-8-cookie-usage-tutorial-with-the-code-example-2020-ee3b71f70ba7
+    }   //https://tony-stark.medium.com/laravel-8-cookie-usage-tutorial-with-the-code-example-2020-ee3b71f70ba7
 
-
-
-
-    // вариант 4
-    public function setCookie4(Request $request){
+    public function setCookie4(Request $request)
+    {
         $cookie = Cookie::make('name', 'value', 120);
         dump(Cookie::make('name', 'value', 120));
-    }
+    }   //вариант 4
 
-    public function getCookie4(Request $request){
+    public function getCookie4(Request $request)
+    {
         $val = Cookie::get('name');
         echo $val;
         dump($val);
         dump($val = Cookie::get('name'));
-    }//https://www.nicesnippets.com/blog/laravel-cookies-set-get-delete-cookies
+    }   //https://www.nicesnippets.com/blog/laravel-cookies-set-get-delete-cookies
 
-
-    //Кеш
-    public function putCache(Request $request){
+    public function putCache(Request $request)
+    {
         Cache::put('key', 'Кеш на 60 сек', 60); // имя, значение, время в секундах
         //dump();
-    }
+    }   //Кеш
 
-    public function getCache(Request $request){
+    public function getCache(Request $request)
+    {
         dump(Cache::get('key'));
         dump(Cache::get('key2'));
         dump(Cache::get('key3'));
     }
 
-    public function putCacheForever(Request $request){
-        Cache::put('key2', 'value2'); // имя, значение,  время если не указать - будет навсегда
+    public function putCacheForever(Request $request)
+    {
+        Cache::put('key2', 'value2');   //имя, значение,  время если не указать - будет навсегда
         $value = 'value3';
         Cache::forever('key3', $value); //метод forever также навсегда создает файл в кеше
         //две формы записи, работают одинаково
     }
 
-    public function checkCache(Request $request){
-        if(Cache::has('key')){
+    public function checkCache(Request $request)
+    {
+        if (Cache::has('key'))
+        {
             dump(Cache::get('key'));
-        }else{
+        } else {
             dump(Cache::put('key', 'Кеш был пуст', 60));
             dump(Cache::get('key'));
         }
     }
 
-    public function forgetCache(Request $request){
+    public function forgetCache(Request $request)
+    {
         Cache::forget('key2');
         dump(Cache::get('key2'));
     }
 
-
-    public function pagination(Request $request){
+    public function pagination(Request $request)
+    {
         $posts = Posts::orderBy('id', 'desc')->paginate(4);
         $title = 'Home Page';
         return view('layouts.layout', compact('title', 'posts'));
     }
-
-
-
 }
 ?>
 
