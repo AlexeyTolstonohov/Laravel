@@ -23,15 +23,14 @@ class PostsFactory extends Factory
 
     public function definition()
     {
-
         $faker = Faker::create();
 
         return [
-            'title' =>$faker->word($nb = 3, $asText = false),
-            'content'=>$faker->paragraph($nbSentences = 3, $variableNbSentences = true),
+            'title'     =>$faker->word($nb = 3, $asText = false),
+            'content'   =>$faker->paragraph($nbSentences = 3, $variableNbSentences = true),
             'created_at'=>$faker->dateTime($max = 'now', $timezone = null),
             'updated_at'=>$faker->dateTime($max = 'now', $timezone = null),
-            'rubric_id'=>$faker->numberBetween(1,5),
+            'rubric_id' =>$faker->numberBetween(1, 5),
         ];
     }
 }
