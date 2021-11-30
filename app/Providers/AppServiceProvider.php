@@ -27,13 +27,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer('layouts.footer', function($view){
+        view()->composer('layouts.footer', function($view)
+        {
             $view->with('rubrics', Rubric::all());
         });
 
         Paginator::useBootstrap();
 
-        DB::listen(function($query){
+        DB::listen(function($query)
+        {
             Log::channel('sqllogs')->info($query->sql);
         });
     }

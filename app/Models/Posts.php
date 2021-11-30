@@ -29,15 +29,18 @@ class Posts extends Model
 
     ];
 
-    public function rubric(){
+    public function rubric()
+    {
         return $this->belongsTo(Rubric::class);
     }
 
-    public function tags(){
+    public function tags()
+    {
         return $this->belongsToMany(Tag::class);
     }
 
-    public function SetTitleAttribute($value){
+    public function SetTitleAttribute($value)
+    {
         $this->attributes['title'] = Str::title($value);
     }
 }

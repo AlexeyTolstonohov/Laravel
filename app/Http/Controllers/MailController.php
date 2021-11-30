@@ -9,7 +9,8 @@ use App\User;
 
 
 class MailController extends Controller{
-    public function sendMail(Request $request){
+    public function sendMail(Request $request)
+    {
         /*Mail::to('some@gmail.com')->send(new OrderShipped($order));  //нет такого и настройки надо выставить в .env  и почту написать реальную  */
         $details =[
             'title' => 'title mail',
@@ -18,13 +19,12 @@ class MailController extends Controller{
 
         Mail::to('beckon.frensis@yandex.ru')->send(new TestMail($details));
         /*
-        if(Mail::to('beckon.frensis@yandex.ru')->send(new TestMail($details))){
+        if (Mail::to('beckon.frensis@yandex.ru') -> send(new TestMail($details))){
             dump('sended');
-        }else{
+        } else {
             dump(' not sended');
         }
         */
-
     }
 }
 

@@ -12,8 +12,8 @@ class Rubric extends Model
     //$rubric = Rubric:find(1);
     //protected $title ='title';
 
-    public function posts(){
-
-    return $this->hasMany('App\Models\Posts');
+    public function posts()
+    {
+        return $this->hasMany('App\Models\Posts');
     }
 }
