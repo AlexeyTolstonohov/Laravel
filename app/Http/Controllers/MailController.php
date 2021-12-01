@@ -14,7 +14,7 @@ class MailController extends Controller{
         /*Mail::to('some@gmail.com')->send(new OrderShipped($order));  //нет такого и настройки надо выставить в .env  и почту написать реальную  */
         $details =[
             'title' => 'title mail',
-            'body' => 'text mail'
+            'body'  => 'text mail'
         ];
 
         Mail::to('beckon.frensis@yandex.ru')->send(new TestMail($details));

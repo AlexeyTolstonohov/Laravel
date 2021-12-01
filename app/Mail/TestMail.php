@@ -19,6 +19,7 @@ class TestMail extends Mailable
     public function __construct($details)
     {
         $this->details = $details;
+
         return $this->view('create');
     }
 

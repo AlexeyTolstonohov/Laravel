@@ -16,6 +16,7 @@ class TemplateController extends Controller
         $post = Posts::all();
         return view('template', compact('post'));
     }
+
     public function post_loop_show()
     {
         $post = Posts::all();

@@ -8,10 +8,9 @@ use App\Http\Controllers\Controller;
 class SessionController extends Controller {
 
     public function accessSessionData(Request $request) {
-        if($request->session()->has('my_name'))
-        {
+        if($request->session()->has('my_name')) {
             echo $request->session()->get('my_name');
-        } else {
+        } else { //to do reafactor, delete else
             echo 'No data in the session';
         }
 

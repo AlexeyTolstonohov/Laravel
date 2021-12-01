@@ -19,11 +19,12 @@ class HomeController extends Controller
 {
     public function index()
     {
-         dump($_ENV['DB_DATABASE']);
-         dump(config('app.timezone'));
-         dump(config('database.connections.mysql.database'));
-         dump($_ENV);
-         return "hello";
+        dump($_ENV['DB_DATABASE']);
+        dump(config('app.timezone'));
+        dump(config('database.connections.mysql.database'));
+        dump($_ENV);
+
+        return "hello";
     }   //вывод настроек ларавел, название базы данных, часовой пояс, соединение, настройки
 
     public function test()
@@ -36,6 +37,7 @@ class HomeController extends Controller
         // $posts = DB::select("SELECT * FROM users");
         $data = DB::table("country")->limit(5)->get();
         dd($data);
+
         return view('home', ['res'=>5, 'name'=> 'John']);
     }   //вывод стран - максмимум пять результатов
 
@@ -75,8 +77,7 @@ class HomeController extends Controller
         $post = Posts::find(1);
         dump($post->title);
 
-        foreach ($post->tags as $tag)
-        {
+        foreach ($post->tags as $tag) {
             dump($tag->title);
         }
         unset($tag);
@@ -86,7 +87,8 @@ class HomeController extends Controller
     {
         $tag = Tag::find(2);
         dump($tag->title);
-        foreach ($tag->posts as $post){
+
+        foreach ($tag->posts as $post) {
             dump($post->title);
         }
         unset($post);
@@ -157,6 +159,7 @@ class HomeController extends Controller
         $minutes = 10;
         $response = new Response('Hello World');
         $response->withCookie(cookie('name', 'virat', $minutes));
+
         return $response;
     }   //вариант 3 через респонс
 
@@ -198,16 +201,14 @@ class HomeController extends Controller
     {
         Cache::put('key2', 'value2');   //имя, значение,  время если не указать - будет навсегда
         $value = 'value3';
-        Cache::forever('key3', $value); //метод forever также навсегда создает файл в кеше
-        //две формы записи, работают одинаково
+        Cache::forever('key3', $value); //метод forever также навсегда создает файл в кеше две формы записи, работают одинаково
     }
 
     public function checkCache(Request $request)
     {
-        if (Cache::has('key'))
-        {
+        if (Cache::has('key')) {
             dump(Cache::get('key'));
-        } else {
+        } else { //to do refactor, delete else, bad path first
             dump(Cache::put('key', 'Кеш был пуст', 60));
             dump(Cache::get('key'));
         }
@@ -223,6 +224,7 @@ class HomeController extends Controller
     {
         $posts = Posts::orderBy('id', 'desc')->paginate(4);
         $title = 'Home Page';
+
         return view('layouts.layout', compact('title', 'posts'));
     }
 }
